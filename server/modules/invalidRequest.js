@@ -12,7 +12,8 @@ const invalidRequest = (req, res) => {
     }
 
     // Method needs to be GET to get data from user
-    if (req.method != 'GET'){
+    if (req.method != 'GET' && req.method != 'OPTIONS'){
+        console.log(`method = ${req.method}`);
         res.writeHead(406, {'Content-type': 'application/json'});
         res.end('{"error": "Incorrect API Request"}');
         console.log('{"error": "Incorrect API Request"}');
@@ -34,7 +35,7 @@ const invalidRequest = (req, res) => {
         console.log('{"error": "No number passed in parameter"}');
         return true;
     }
-
+    
     return false;
 }
 

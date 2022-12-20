@@ -1,23 +1,34 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import { FibonacciDisplay } from './components/FibonacciDisplay';
+import { LengthForm } from './components/LengthForm'
 
 function App() {
+
+  let [sequenceLength, setSequenceLength] = useState(0);
+  let [sequence, setSequence] = useState("");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <header></header>
+      <div className="container mrgnbtm">
+        <div className="row">
+          <h1>Fibonacci Sequence Calculator</h1>
+        </div>
+        <div className="row">
+          <LengthForm
+            sequenceLength = {sequenceLength}
+            setSequence = {setSequence}
+            setSequenceLength = {setSequenceLength}
+          ></LengthForm>
+          <div className="col-md-4">
+            <FibonacciDisplay
+              fibonacciSequence = {sequence}>
+            </FibonacciDisplay>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
