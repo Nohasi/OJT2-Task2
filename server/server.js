@@ -11,7 +11,7 @@ const server = http.createServer((req, res) => {
     if(invalidRequest(req, res)){
         return;
     }
-    res.writeHead(406, {'Content-type': 'application/json'});
+    res.writeHead(200, {'Content-type': 'application/json', 'Access-Control-Allow-Origin': '*'});
     res.end(`{"sequence": "${fibonacci(url.parse(req.url, true).query.sequenceLength)}"}`);
     return;
 });
