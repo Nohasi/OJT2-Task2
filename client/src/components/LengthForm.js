@@ -5,13 +5,14 @@ export const LengthForm = ({sequenceLength, setSequenceLength, setSequence}) => 
     let findSequence = async (data) => {
         data.preventDefault();
         try {
-            console.log(`Sequence length is ${sequenceLength}`);
-            const response = await fetch(`http://localhost:4090/fibonacci?sequenceLength=${sequenceLength}`, {
+            const response = await fetch(`fibonacci?sequenceLength=${sequenceLength}`, {
                 method: 'GET',
-                headers: {'Content-type': 'application/json'}
+                mode: 'cors',
+                headers: {'Accept': 'application/json'}
             });
     
             let resJson = await response.json();
+            // if status === 200, we have a correct valid request
             if (response.status === 200){
                 console.log(`Sequence: ${resJson.sequence}`);
                 setSequence(resJson.sequence);;
@@ -24,7 +25,7 @@ export const LengthForm = ({sequenceLength, setSequenceLength, setSequence}) => 
     }
     
     return (
-        <div style={{paddingBottom: '15px'}} className="col-md-4">
+        <div style={{paddingBottom: '15px'}}>
             <form onSubmit={findSequence}>
               <input type="text" value={sequenceLength} placeholder="Enter Desired Sequence Length Here" onChange={(e) => setSequenceLength(e.target.value)}></input>
               &nbsp;&nbsp;&nbsp;

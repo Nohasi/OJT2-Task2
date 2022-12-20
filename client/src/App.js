@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <header></header>
-      <div className="container mrgnbtm">
+
         <div className="row">
           <h1>Fibonacci Sequence Calculator</h1>
         </div>
@@ -22,14 +22,11 @@ function App() {
             setSequence = {setSequence}
             setSequenceLength = {setSequenceLength}
           ></LengthForm>
-          <div className="col-md-4">
-            <FibonacciDisplay
-              fibonacciSequence = {sequence}>
-            </FibonacciDisplay>
-          </div>
+          <FibonacciDisplay
+           fibonacciSequence = {sequence}>
+          </FibonacciDisplay>
         </div>
       </div>
-    </div>
   );
 }
 

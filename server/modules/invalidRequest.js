@@ -35,6 +35,13 @@ const invalidRequest = (req, res) => {
         console.log('{"error": "No number passed in parameter"}');
         return true;
     }
+
+    if (currentURL.query.sequenceLength > 1476){
+        res.writeHead(406, {'Content-type': 'application/json'});
+        res.end('{"error": "Number too large"}');
+        console.log('{"error": "Number too large"}');
+        return true;
+    }
     
     return false;
 }
