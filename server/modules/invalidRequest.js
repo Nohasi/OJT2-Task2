@@ -36,6 +36,7 @@ const invalidRequest = (req, res) => {
         return true;
     }
 
+    // Any value larger than 1476 results in the value "infinity" being returned
     if (currentURL.query.sequenceLength > 1476){
         res.writeHead(406, {'Content-type': 'application/json'});
         res.end('{"error": "Number too large"}');
