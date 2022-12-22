@@ -1,6 +1,8 @@
 import React from "react";
 
 export const FibonacciDisplay = ({fibonacciSequence, errorMessage}) => {
+    
+    // If an error message exists, outputs the error instead of the sequence
     let outputString = '';
     let outputClassname = '';
     if (errorMessage == ''){

@@ -1,38 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
-import { FibonacciDisplay } from './components/FibonacciDisplay';
-import { LengthForm } from './components/LengthForm'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { FibonacciPage } from './components/FibonacciPage';
 
 function App() {
-
-  let [sequenceLength, setSequenceLength] = useState(0);
-  let [sequence, setSequence] = useState("");
-  let [errorMessage, setErrorMessage] = useState("");
-
+  // App automatically navigates users to the '/fibonacci' path
   return (
     <div className="App">
-      <header></header>
-        <div style={{backgroundColor: "#a5b5bf"}}>
-        <div className="row">
-          <h1>Fibonacci Sequence Calculator</h1>
-        </div>
-        <div className="row">
-          <LengthForm
-            sequenceLength = {sequenceLength}
-            setSequence = {setSequence}
-            setSequenceLength = {setSequenceLength}
-            setErrorMessage = {setErrorMessage}
-          ></LengthForm>
-        </div>
-        </div>
-        <div>
-          <FibonacciDisplay
-           fibonacciSequence = {sequence}
-           errorMessage = {errorMessage}
-           ></FibonacciDisplay>
-        </div>
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="fibonacci" element={<FibonacciPage />}/> 
+          <Route path="" element={<Navigate to="/fibonacci" />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 

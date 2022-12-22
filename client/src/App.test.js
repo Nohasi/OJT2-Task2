@@ -1,24 +1,23 @@
 import App from './App';
-import { unmountComponentAtNode, render } from 'react-dom';
-import { act } from 'react-dom/test-utils'
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { FibonacciPage } from './components/FibonacciPage';
 
-let container = null;
-beforeEach(() => {
-  // setup a DOM element as a render target
-  container = document.createElement("div");
-  document.body.appendChild(container);
+test('Renders the landing page', () => {
+  render(<App/>)
 });
 
-afterEach(() => {
-  // cleanup on exiting
-  unmountComponentAtNode(container);
-  container.remove();
-  container = null;
+test('Renders the fibonacci page', () => {
+  render(<FibonacciPage/>);
 });
 
-it("Renders the app", () => {
-  act(() => {
-    render(<App/>);
+describe('Insert value', () => {
+  it('should return the correct result when passing a correct value', async () => {
+    render(<FibonacciPage/>);
+    const textboxElement = screen.getByRole('textbox');
+    const buttonElement = screen.getByRole('button');
+    userEvent.type(textboxElement, '4');
+    userEvent.click(buttonElement);
+    expect(screen.getAllByText('0,1,1,2,3')).toBeInTheDocument();
   });
-
 });

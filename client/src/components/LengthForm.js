@@ -18,7 +18,7 @@ export const LengthForm = ({sequenceLength, setSequenceLength, setSequence, setE
                 setErrorMessage('');
                 setSequence(resJson.sequence);
             }
-            else {
+            else { // If status != 406 then we have an error, and we set the error message accordingly
                 setSequence('');
                 setErrorMessage(resJson.error);
             }
