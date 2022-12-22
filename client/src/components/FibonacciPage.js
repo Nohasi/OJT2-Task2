@@ -4,7 +4,7 @@ import { LengthForm } from './LengthForm';
 
 export const FibonacciPage = () => {
       // Setting states to alter the page dynamically
-  let [sequenceLength, setSequenceLength] = useState(0);
+  let [sequenceLength, setSequenceLength] = useState("");
   let [sequence, setSequence] = useState("");
   let [errorMessage, setErrorMessage] = useState("");
 

@@ -12,12 +12,10 @@ test('Renders the fibonacci page', () => {
 });
 
 describe('Insert value', () => {
-  it('should return the correct result when passing a correct value', async () => {
+  it('should correctly enter the value into the text box', async () => {
     render(<FibonacciPage/>);
     const textboxElement = screen.getByRole('textbox');
-    const buttonElement = screen.getByRole('button');
     userEvent.type(textboxElement, '4');
-    userEvent.click(buttonElement);
-    expect(screen.getAllByText('0,1,1,2,3')).toBeInTheDocument();
+    expect(screen.getByRole('textbox')).toHaveValue('4');
   });
 });

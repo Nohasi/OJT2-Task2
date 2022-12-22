@@ -32,7 +32,7 @@ export const LengthForm = ({sequenceLength, setSequenceLength, setSequence, setE
     return (
         <div style={{paddingBottom: '15px'}}>
             <form onSubmit={findSequence}>
-              <input type="text" value={sequenceLength} placeholder="Enter Desired Sequence Length Here" onChange={(e) => setSequenceLength(e.target.value)}></input>
+              <input id="sequence-length" type="text" value={sequenceLength} placeholder="Enter Sequence Length" onChange={(e) => setSequenceLength(e.target.value)}></input>
               &nbsp;&nbsp;&nbsp;
               <button type="submit">Generate Fibonacci</button>
             </form>
