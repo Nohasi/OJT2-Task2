@@ -1,6 +1,6 @@
 import React from "react";
 
-export const LengthForm = ({sequenceLength, setSequenceLength, setSequence}) => {
+export const LengthForm = ({sequenceLength, setSequenceLength, setSequence, setErrorMessage}) => {
 
     let findSequence = async (data) => {
         data.preventDefault();
@@ -15,7 +15,12 @@ export const LengthForm = ({sequenceLength, setSequenceLength, setSequence}) => 
             // if status === 200, we have a correct valid request
             if (response.status === 200){
                 console.log(`Sequence: ${resJson.sequence}`);
-                setSequence(resJson.sequence);;
+                setErrorMessage('');
+                setSequence(resJson.sequence);
+            }
+            else { // If status != 406 then we have an error, and we set the error message accordingly
+                setSequence('');
+                setErrorMessage(resJson.error);
             }
         }
         catch (error) {
@@ -27,7 +32,7 @@ export const LengthForm = ({sequenceLength, setSequenceLength, setSequence}) => 
     return (
         <div style={{paddingBottom: '15px'}}>
             <form onSubmit={findSequence}>
-              <input type="text" value={sequenceLength} placeholder="Enter Desired Sequence Length Here" onChange={(e) => setSequenceLength(e.target.value)}></input>
+              <input id="sequence-length" type="text" value={sequenceLength} placeholder="Enter Sequence Length" onChange={(e) => setSequenceLength(e.target.value)}></input>
               &nbsp;&nbsp;&nbsp;
               <button type="submit">Generate Fibonacci</button>
             </form>
