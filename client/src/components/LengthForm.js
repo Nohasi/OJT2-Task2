@@ -1,6 +1,6 @@
 import React from "react";
 
-export const LengthForm = ({sequenceLength, setSequenceLength, setSequence}) => {
+export const LengthForm = ({sequenceLength, setSequenceLength, setSequence, setErrorMessage}) => {
 
     let findSequence = async (data) => {
         data.preventDefault();
@@ -15,7 +15,12 @@ export const LengthForm = ({sequenceLength, setSequenceLength, setSequence}) => 
             // if status === 200, we have a correct valid request
             if (response.status === 200){
                 console.log(`Sequence: ${resJson.sequence}`);
-                setSequence(resJson.sequence);;
+                setErrorMessage('');
+                setSequence(resJson.sequence);
+            }
+            else {
+                setSequence('');
+                setErrorMessage(resJson.error);
             }
         }
         catch (error) {

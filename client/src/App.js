@@ -8,11 +8,12 @@ function App() {
 
   let [sequenceLength, setSequenceLength] = useState(0);
   let [sequence, setSequence] = useState("");
+  let [errorMessage, setErrorMessage] = useState("");
 
   return (
     <div className="App">
       <header></header>
-
+        <div style={{backgroundColor: "#a5b5bf"}}>
         <div className="row">
           <h1>Fibonacci Sequence Calculator</h1>
         </div>
@@ -21,10 +22,15 @@ function App() {
             sequenceLength = {sequenceLength}
             setSequence = {setSequence}
             setSequenceLength = {setSequenceLength}
+            setErrorMessage = {setErrorMessage}
           ></LengthForm>
+        </div>
+        </div>
+        <div>
           <FibonacciDisplay
-           fibonacciSequence = {sequence}>
-          </FibonacciDisplay>
+           fibonacciSequence = {sequence}
+           errorMessage = {errorMessage}
+           ></FibonacciDisplay>
         </div>
       </div>
   );
